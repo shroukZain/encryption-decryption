@@ -2,7 +2,7 @@
  ;*                                           1- MonoNumeric 
  ;*                                           2-MonoAlphaptic             
 
-name "crypt"
+name "d-encryption"
 include 'emu8086.inc'
 org 100h 
   
