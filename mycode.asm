@@ -1,4 +1,4 @@
- ;* This code contains two types of chipers :
+  ;* This code contains two types of chipers :
  ;*                                           1- MonoNumeric 
  ;*                                           2-MonoAlphaptic             
 
@@ -64,6 +64,8 @@ msg4        DB  'To Use Monoalphabetic Cipher Enter 1',0Dh,0Ah,'To Use Mononumer
 
 
 msg5        DB  'Thank You For Your Time  ', '$'                         ; store the thank message in msg5
+                                                                                            
+msg6        DB  'To Use ecryption Enter 1',,0Dh,0Ah,'To Use decryption Enter 2',0Dh,0Ah,'To End The Program Enter 3',0Dh,0Ah,'$'              ; store the choosing message in msg6                                                                                       
 
 n_line      DB  0DH,0AH,'$'                                              ; for new line 
 
@@ -88,13 +90,13 @@ INT   21h
 
 LEA  DX ,n_line                                                         ; address n_line with dx
 MOV  AH,09h                                                             ; Selecting the sub-function
-INT   21h
+INT   21h  
 
-; print a choose message-output of a string at ds:dx
-LEA   DX,msg4                                                           ; address msg4 with dx
+
+; print a choose encryption or decryption of a string at ds:dx
+LEA   DX,msg6                                                           ; address msg4 with dx
 MOV   AH,09h                                                            ; Selecting the sub-function
-INT   21h                                                               ; Function that outputs a string at DS:DX. String must be terminated by '$'
-
+INT   21h     
 
 ;read the string
 
@@ -112,10 +114,11 @@ INT   21h                                                               ; Functi
        
 LEA    SI, cho                                                          ; address cho with si
 CMP    [SI], '1'                                                        ; compare between "1" and effictive address of si
-JE     monoalphapetic                                                   ; jump if [si]=1 to monoalphapetic  
+JE     encryption                                                   ; jump if [si]=1 to monoalphapetic  
 CMP    [SI], '2'                                                        ; compare between "2" and effictive address of si        
-JE     mononumeric                                                      ; jump if  [si]=2  to  mononumeric
+JE     decryption                                                      ; jump if  [si]=2  to  mononumeric
 CMP    [SI], '3'                                                        ; compare between "3" and effictive address of si
-JE     exit                                                             ; jump if [si]=3 to exit
+JE     exit                                                             ; jump if [si]=3 to exit        
+     
          
  
