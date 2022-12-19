@@ -171,6 +171,7 @@ INT 21h                                                                ; Functio
 MOV BX,0                                                               ;load the BX register with 0
 MOV BL, buffer[1]                                                      ;moving the content of buffer[1] into register BL
 MOV buffer[BX+ 2],'$'                                                  ; put '$' at the end of buffer to print it latter
+
 ;------------------- Encrypting -
 
 
