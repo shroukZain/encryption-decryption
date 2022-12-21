@@ -64,6 +64,7 @@ cho         DB  '$'                                                      ; for y
 
 ;-str         DB  256 DUP('$')                                             ; buffer string
 
+
 enc_str     DB  256 DUP('$')                                             ; encrypted string
 
 dec_str     DB  256 DUP('$')                                             ; decrypted string 
