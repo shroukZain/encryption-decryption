@@ -33,7 +33,6 @@ INC AL                         ; Increases AL value by 1, therefore changing the
 LOOP store_numbers             ; Loops if CX after decrementing by 1 not equal 0
 
 JMP start                      ;to start the program
-
 ;--------------------------------------------------------------------------------------------------------------------------------------------
 
 encrypt_msg DB 0Dh,0Ah,"Enter a message to encrypt: $"     
@@ -43,6 +42,7 @@ encrypted_msg DB 0Dh,0Ah,"Encrypted message: $"
 decrypt_msg DB 0Dh,0Ah,"Decrypted message: $"
 
 buffer DB 27,?,27 dup(' ')   
+
             
 ;--------------------------------------------------------------------------------------------------------------------------------------------         
 
