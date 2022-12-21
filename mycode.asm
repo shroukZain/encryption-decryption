@@ -248,7 +248,6 @@ LEA    DX,msg1                                                                 ;
 MOV    AH,09h                                                                  ; moving (09h) to the register ah to select sub-function 9 of the interrupt 21h DOS interrupts       
 INT    21h                                                                     ; interrupt 21h is called to output the string  
 
-
 ;take the input from a user
 
 PUSH   CS                                                                      ; pushes CS (code segment) into the stack
@@ -259,14 +258,12 @@ MOV    DX,00FFH                                                                ;
 CALL   GET_STRING                                                              ; procedure to get string from a user
                                                                                ; the received string is written to buffer at DS:DI , buffer size should be in DX
                                                                                ; procedure stops the input when 'Enter' is pressed 
-
 ;print new line
 
 LEA    DX,n_line                                                               ; save the effective address of n_line in DX register (offset of the string)
 MOV    AH,09h                                                                  ; moving (09h) to the register ah to select sub-function 9 of the interrupt 21h DOS interrupts
 INT    21h                                                                     ; interrupt 21h is called   
-
-                               
+                             
 ; --------------Encryption---------------------
 
 LEA    BX, table1                                                             ; save the effective address of table1 in BX register
@@ -274,21 +271,18 @@ LEA    SI, str                                                                ; 
 LEA    DI, enc_str                                                            ; save the effective address of enc_str in DI register
 
 CALL   parse   
-
-                                          
+                                         
 ;print a string that the DS:DX segment:offset pair point to 
 
 LEA    DX,msg2                                                               ; save the effective address of msg2 in DX register (offset of the string)
 MOV    AH,09h                                                                ; moving (09h) to the register ah to select sub-function 9 of the interrupt 21h DOS interrupts
 INT    21h                                                                   ; interrupt 21h is called to output the string 
  
- 
 ;print a string that the DS:DX segment:offset pair point to 
 
 LEA    DX, enc_str                                                         ; save the effective address of enc_str in DX register (offset of the string)
 MOV    AH, 09h                                                             ; moving (09h) to the register ah to select sub-function 9 of the interrupt 21h DOS interrupts
 INT    21h                                                                 ; interrupt 21h is called to output the string 
-
 
 ;print new line
 
@@ -298,7 +292,6 @@ INT    21h                                                                ; inte
 
 CALL start   
   
-
 ;-------------------------------------------------------------------------------------------decryption-----------------------------------------------------------------------------     
 decryption:
           
@@ -307,7 +300,6 @@ LEA   DX,msg4                                                           ; addres
 MOV   AH,09h                                                            ; Selecting the sub-function
 INT   21h                                                               ; Function that outputs a string at DS:DX. String must be terminated by '$'
 
-
 ;read the string
 
 PUSH   CS                                                               ; push code segment from stack
@@ -315,8 +307,6 @@ POP    DS                                                               ; pop da
 LEA    DI,cho                                                           ; address cho with di
 MOV    DX,000FH                                                         ; exchange dx with 000FH
 CALL   GET_STRING                                                       ; call get string function
-
-
 
 LEA  DX ,n_line                                                         ; address n_line with dx
 MOV  AH,09h                                                             ; Selecting the sub-function
@@ -333,8 +323,7 @@ JE     exit                                                             ; jump i
 ;------------------------- dencrypting monoalphapetic ---------------------------- 
 
 de_monoalphapetic:
-
-           
+         
 ;print a string that the DS:DX segment:offset pair point to 
 
 LEA    DX,msg7                                                                 ; save the effective address of msg1 in DX register (offset of the string)
