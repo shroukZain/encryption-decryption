@@ -18,6 +18,8 @@ STOSB                          ; Copies a byte from AL to a memory location in E
 INC AL                         ; Increases AL value by 1, therefore changing the letter
 LOOP store_letters             ; Loops if CX after decrementing by 1 not equal 0
 
+
+
 ; Store numbers from 1 to 26
 
 MOV CX,26                      ; Size of letters in the alphabet
