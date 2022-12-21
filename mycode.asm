@@ -73,8 +73,6 @@ Welcome_msg DB  "WELCOME TO CIPHERS PROGRAM: '$'"                        ; welco
 -------------------------------------------------------------------------------------------------------------------------------------------
 start:                                                                  ; start program
 
-
-
 LEA   DX,Welcome_msg                                                    ; address Welcome-msg with dx
 MOV   AH,09h                                                            ; Selecting the sub-function
 INT   21h       
@@ -95,8 +93,6 @@ LEA    DI,cho                                                           ; addres
 MOV    DX,000FH                                                         ; exchange dx with 000FH
 CALL   GET_STRING                                                       ; call get string function
 
-
-
 LEA  DX ,n_line                                                         ; address n_line with dx
 MOV  AH,09h                                                             ; Selecting the sub-function
 INT   21h                                                               ; Function that outputs a string at DS:DX. String must be terminated by '$'
@@ -111,15 +107,12 @@ JE     exit                                                             ; jump i
      
      
 ;-------------------------------------------------------------------------------------------encrypt-----------------------------------------------------------------------------     
-encryption:
-          
-          
+encryption:         
 
 ; print a choose message-output of a string at ds:dx
 LEA   DX,msg4                                                           ; address msg4 with dx
 MOV   AH,09h                                                            ; Selecting the sub-function
 INT   21h                                                               ; Function that outputs a string at DS:DX. String must be terminated by '$'
-
 
 ;read the string
 
