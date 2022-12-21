@@ -485,6 +485,7 @@ exit:
 
 	LEA    DX,msg5         				    ; save the effective address of msg5 in DX register (offset of the string)
 	MOV    AH,09h          				    ; moving (09h) to the register ah to select sub-function 9 of the interrupt 21h DOS interrupts
+	
 	INT    21h             				    ; interrupt 21h is called to output the string
 
 DEFINE_GET_STRING     					    ; predefined macro in umu8086.inc to read a string input 
