@@ -352,14 +352,11 @@ MOV    DX,00FFH                                                                ;
 CALL   GET_STRING                                                              ; procedure to get string from a user
                                                                                ; the received string is written to buffer at DS:DI , buffer size should be in DX
                                                                                ; procedure stops the input when 'Enter' is pressed 
-
 ;print new line
 
 LEA    DX,n_line                                                               ; save the effective address of n_line in DX register (offset of the string)
 MOV    AH,09h                                                                  ; moving (09h) to the register ah to select sub-function 9 of the interrupt 21h DOS interrupts
-INT    21h                                                                     ; interrupt 21h is called   
-
-         
+INT    21h                                                                     ; interrupt 21h is called  
 
 ;-------Decryption
 
@@ -445,10 +442,9 @@ end_of_string:
      
 ret              					       ; To resume execution flow at the instruction following the call
 
-parse endp         
-         
-exit:       
+parse endp                  
 
+exit:       
 	;print new line
 
 	LEA    DX,n_line       				     ; save the effective address of n_line in DX register (offset of the string)
@@ -460,7 +456,6 @@ exit:
 	MOV    AH,09h          				    ; moving (09h) to the register ah to select sub-function 9 of the interrupt 21h DOS interrupts
 	
 	INT    21h             				    ; interrupt 21h is called to output the string
-
 
 DEFINE_GET_STRING     					    ; predefined macro in umu8086.inc to read a string input 
 
