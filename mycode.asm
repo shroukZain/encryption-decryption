@@ -4,7 +4,6 @@
 name "d-encryption"
 include 'emu8086.inc'
 org 100h 
-  
 ;-------------- Saving Tables --------------
 ; Storing letters from a to z (lower case)
 
