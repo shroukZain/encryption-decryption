@@ -45,7 +45,6 @@ buffer DB 27,?,27 dup(' ')
 
             
 ;--------------------------------------------------------------------------------------------------------------------------------------------         
-
 									  
 
 table1      DB 97 dup (' '), 'klmnxyzabcopqrstvuwdefghij'                ; store normal letters in table1 at size of 97 
@@ -331,11 +330,7 @@ JE     mononumeric                                                      ; jump i
 CMP    [SI], '3'                                                        ; compare between "3" and effictive address of si
 JE     exit                                                             ; jump if [si]=3 to exit
 
-
-
-
 ;------------------------- dencrypting monoalphapetic ---------------------------- 
-
 
 de_monoalphapetic:
 
@@ -451,11 +446,7 @@ end_of_string:
 ret              					       ; To resume execution flow at the instruction following the call
 
 parse endp         
-   
-   
-   
-           
-      
+         
 exit:       
 
 	;print new line
