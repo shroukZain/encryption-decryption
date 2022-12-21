@@ -51,36 +51,27 @@ buffer DB 27,?,27 dup(' ')
 table1      DB 97 dup (' '), 'klmnxyzabcopqrstvuwdefghij'                ; store normal letters in table1 at size of 97 
 
 table2      DB 97 dup (' '), 'hijtuvwxyzabcdklmnoprqsefg'                ; store code letters in table2 at size of 97
-
 msg1        DB  0Dh,0Ah,'Enter a message to encrypt: ', '$'              ; store the enter message in msg1  
 msg7        DB  0Dh,0Ah,'Enter a message to decrypt: ', '$'              ; store the enter message in msg7 
-
 msg2        DB  'Encrypted message: ', '$'                               ; store the encrepted  message in msg2 
-
-msg3        DB  'Decrypted message: ', '$'                               ; store the decrepted  message in msg3 
-
-
-msg4        DB  'To Use Monoalphabetic Cipher Enter 1',0Dh,0Ah,'To Use Mononumeric Cipher and deciphering Enter 2',0Dh,0Ah,'To End The Program Enter 3',0Dh,0Ah,'$'              ; store the starting message in msg4 
-
-
+msg3        DB  'Decrypted message: ', '$' ; store the decrepted  message in msg3 
+msg4        DB  'To Use Monoalphabetic Cipher Enter 1',0Dh,0Ah,'To Use Mononumeric Cipher and deciphering Enter 2',0Dh,0Ah,'To End The Program Enter 3',0Dh,0Ah,'$' ; store the starting message in msg4
 msg5        DB  'Thank You For Your Time  ', '$'                         ; store the thank message in msg5
-                                                                                            
 msg6        DB  'To Use ecryption Enter 1',,0Dh,0Ah,'To Use decryption Enter 2',0Dh,0Ah,'To End The Program Enter 3',0Dh,0Ah,'$'              ; store the choosing message in msg6                                                                                       
-
 n_line      DB  0DH,0AH,'$'                                              ; for new line 
 
 cho         DB  '$'                                                      ; for your choose
 
-str         DB  256 DUP('$')                                             ; buffer string
+;-str         DB  256 DUP('$')                                             ; buffer string
 
 enc_str     DB  256 DUP('$')                                             ; encrypted string
 
 dec_str     DB  256 DUP('$')                                             ; decrypted string 
 
 Welcome_msg DB  "WELCOME TO CIPHERS PROGRAM: '$'"                        ; welcome massage
-
-;--------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------
 start:                                                                  ; start program
+
 
 
 LEA   DX,Welcome_msg                                                    ; address Welcome-msg with dx
