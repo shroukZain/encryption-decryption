@@ -78,17 +78,14 @@ LEA   DX,Welcome_msg                                                    ; addres
 MOV   AH,09h                                                            ; Selecting the sub-function
 INT   21h       
 
-
 LEA  DX ,n_line                                                         ; address n_line with dx
 MOV  AH,09h                                                             ; Selecting the sub-function
 INT   21h  
-
 
 ; print a choose encryption or decryption of a string at ds:dx
 LEA   DX,msg6                                                           ; address msg4 with dx
 MOV   AH,09h                                                            ; Selecting the sub-function
 INT   21h     
-
 ;read the string
 
 PUSH   CS                                                               ; push code segment from stack
@@ -132,10 +129,10 @@ MOV    DX,000FH                                                         ; exchan
 CALL   GET_STRING                                                       ; call get string function
 
 
-
 LEA  DX ,n_line                                                         ; address n_line with dx
 MOV  AH,09h                                                             ; Selecting the sub-function
 INT   21h                                                               ; Function that outputs a string at DS:DX. String must be terminated by '$'
+
        
 LEA    SI, cho                                                          ; address cho with si
 CMP    [SI], '1'                                                        ; compare between "1" and effictive address of si
