@@ -130,7 +130,7 @@ JE     mononumeric                                                      ; jump i
 CMP    [SI], '3'                                                        ; compare between "3" and effictive address of si
 JE     exit                                                             ; jump if [si]=3 to exit
                
-;------------------------- Encrypting mononumeric ----------------------------             
+;------------------------- Encrypting and decryption mononumeric ----------------------------             
 
 mononumeric:
 
@@ -148,7 +148,7 @@ MOV BX,0                                                               ;load the
 MOV BL, buffer[1]                                                      ;moving the content of buffer[1] into register BL
 MOV buffer[BX+ 2],'$'                                                  ; put '$' at the end of buffer to print it latter
 
-;------------------- Encrypting -
+;------------------- Encrypting 
 
 
 ; Displays "Encrypted message: " message
@@ -183,17 +183,13 @@ DEFINE_PRINT_NUM_UNS                                                   ; to decl
 JMP NEXT_CHAR
 
 end_msg:
-
-
 ; -----------------Decryption
 MOV BX,DI                                                               ; moving the content of DI into register BX
 LEA SI, buffer[2]                                                       ; load the effictive address of buffer[2] into  register SI
 
-
 next_num:
 CMP [SI],'$'                                                            ; compare  [SI]- '$'
 JE end_nums                                                             ; reach the end of the message                                                           
-
 
 LODSB                                                                   ; Loads byte from DS:SI to AL, then increments SI by 1
 CMP AL,1 
@@ -206,12 +202,10 @@ XLATB                                                                   ; Decryp
 MOV [SI-1],AL                                                           ; moving the contant  of AL register into [SI-1]
 JMP next_num                     
 
-
 end_nums:
 LEA DX, decrypt_msg                                                     ; load the effictive address od  decrypt_msg to register DX
 MOV AH,9                                                                ; Selecting the sub-function
 INT 21h                                                                 ; interrupt 21H  is called to output a string 
-
 
 ; Displays decrypted message
 LEA DX, buffer+2                                                        ; load the effictive address of (buffer+2) into register DX
@@ -233,9 +227,7 @@ CALL start                                                             ; print a
 
 ;------------------------- encrypting monoalphapetic ---------------------------- 
 
-
 en_monoalphapetic:
-
            
 ;print a string that the DS:DX segment:offset pair point to 
 
@@ -251,8 +243,7 @@ LEA    DI,str                                                                  ;
 MOV    DX,00FFH                                                                ; DX register is to save the buffer size
 
 CALL   GET_STRING                                                              ; procedure to get string from a user
-                                                                               ; the received string is written to buffer at DS:DI , buffer size should be in DX
-                                                                               ; procedure stops the input when 'Enter' is pressed 
+                                                                               ; the received string is written to buffer at DS:DI , buffer size should be in DX                                                                               ; procedure stops the input when 'Enter' is pressed 
 ;print new line
 
 LEA    DX,n_line                                                               ; save the effective address of n_line in DX register (offset of the string)
