@@ -18,14 +18,11 @@ STOSB                          ; Copies a byte from AL to a memory location in E
 INC AL                         ; Increases AL value by 1, therefore changing the letter
 LOOP store_letters             ; Loops if CX after decrementing by 1 not equal 0
 
-
-
 ; Store numbers from 1 to 26
 
 MOV CX,26                      ; Size of letters in the alphabet
 MOV AL,1                       ; Starting from number 1
 MOV DI,460h                    ; Hold the offset of memory location in the ES
-
 
 store_numbers:
 STOSB                          ; Copies a byte from AL to a memory location in ES. DI is used to hold the offset of the memory location in the ES.
@@ -43,13 +40,10 @@ encrypted_msg DB 0Dh,0Ah,"Encrypted message: $"
 decrypt_msg DB 0Dh,0Ah,"Decrypted message: $"
 
 buffer DB 27,?,27 dup(' ')   
-
             
 ;--------------------------------------------------------------------------------------------------------------------------------------------         
 									  
-
 table1      DB 97 dup (' '), 'klmnxyzabcopqrstvuwdefghij'                ; store normal letters in table1 at size of 97 
-
 table2      DB 97 dup (' '), 'hijtuvwxyzabcdklmnoprqsefg'                ; store code letters in table2 at size of 97
 msg1        DB  0Dh,0Ah,'Enter a message to encrypt: ', '$'              ; store the enter message in msg1  
 msg7        DB  0Dh,0Ah,'Enter a message to decrypt: ', '$'              ; store the enter message in msg7 
