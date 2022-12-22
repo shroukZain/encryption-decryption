@@ -441,6 +441,9 @@ exit:
 	
 	INT    21h             				    ; interrupt 21h is called to output the string
 
+
 DEFINE_GET_STRING     					    ; predefined macro in umu8086.inc to read a string input 
 
 end
+
+
