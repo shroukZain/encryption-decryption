@@ -13,7 +13,7 @@ MOV AL,61h                     ; ASCII code for letter 'a'
 MOV DI,400h                    ; Hold the offset of memory location in the ES
 CLD                            ; clears the direction flag ( DF = 0 ,auto increament)
 
-store_letters:                 : Function for storing letters
+store_letters:                 ; Function for storing letters
 STOSB                          ; Copies a byte from AL to a memory location in ES. DI is used to hold the offset of the memory location in the ES.
                                ; After the copy, DI is automatically incremented or decremented to point to the next string element in memory.
 INC AL                         ; Increases AL value by 1, therefore changing the letter
@@ -25,7 +25,7 @@ MOV CX,26                      ; Size of letters in the alphabet
 MOV AL,1                       ; Starting from number 1
 MOV DI,460h                    ; Hold the offset of memory location in the ES
 
-store_numbers:                 : Function for storing numbers
+store_numbers:                 ; Function for storing numbers
 STOSB                          ; Copies a byte from AL to a memory location in ES. DI is used to hold the offset of the memory location in the ES.
                                ; After the copy, DI is automatically incremented or decremented to point to the next number element in memory.
 INC AL                         ; Increases AL value by 1, therefore changing the number
@@ -35,6 +35,7 @@ JMP start                      ;to start the program
 
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------
+;--------Defination of some variables that we use in our code---------
 
 encrypt_msg DB 0Dh,0Ah,"Enter a message to encrypt: $"     
 
@@ -42,7 +43,7 @@ encrypted_msg DB 0Dh,0Ah,"Encrypted message: $"
 
 decrypt_msg DB 0Dh,0Ah,"Decrypted message: $"
 
-buffer DB 27,?,27 dup(' ')   
+buffer DB 27,?,27 dup(' ')                        ;for storing the input from user in
             
 ;--------------------------------------------------------------------------------------------------------------------------------------------         
 									  
@@ -51,23 +52,27 @@ table2      DB 97 dup (' '), 'hijtuvwxyzabcdklmnoprqsefg'                ; store
 msg1        DB  0Dh,0Ah,'Enter a message to encrypt: ', '$'              ; store the enter message in msg1  
 msg7        DB  0Dh,0Ah,'Enter a message to decrypt: ', '$'              ; store the enter message in msg7 
 msg2        DB  'Encrypted message: ', '$'                               ; store the encrepted  message in msg2 
-msg3        DB  'Decrypted message: ', '$' ; store the decrepted  message in msg3 
-msg4        DB  'To Use Monoalphabetic Cipher Enter 1',0Dh,0Ah,'To Use Mononumeric Cipher and deciphering Enter 2',0Dh,0Ah,'To End The Program Enter 3',0Dh,0Ah,'$' ; store the starting message in msg4
+msg3        DB  'Decrypted message: ', '$'                               ; store the decrepted  message in msg3 
+msg4        DB  'To Use Monoalphabetic Cipher Enter 1',0Dh,0Ah,'To Use Mononumeric Cipher and deciphering Enter 2',0Dh,0Ah,'To End The Program Enter 3',0Dh,0Ah,'$' 
+                                                                         ; store the starting message in msg4
 msg5        DB  'Thank You For Your Time  ', '$'                         ; store the thank message in msg5
-msg6        DB  'To Use ecryption Enter 1',,0Dh,0Ah,'To Use decryption Enter 2',0Dh,0Ah,'To End The Program Enter 3',0Dh,0Ah,'$'              ; store the choosing message in msg6                                                                                       
+msg6        DB  'To Use ecryption Enter 1',,0Dh,0Ah,'To Use decryption Enter 2',0Dh,0Ah,'To End The Program Enter 3',0Dh,0Ah,'$'            
+                                                                         ; store the choosing message in msg6                                                                                       
 n_line      DB  0DH,0AH,'$'                                              ; for new line 
 
-cho         DB  '$'                                                      ; for your choose
+cho         DB  '$'                                                      ; for your choose store the choose of the user in
 
-str         DB  256 DUP('$')                                             ; buffer string
+str         DB  256 DUP('$')                                             ; buffer string store the string input from the user
 
 
-enc_str     DB  256 DUP('$')                                             ; encrypted string
+enc_str     DB  256 DUP('$')                                             ; encrypted string for storing the code we encrypted in
 
-dec_str     DB  256 DUP('$')                                             ; decrypted string 
+dec_str     DB  256 DUP('$')                                             ; decrypted string for storing the soce we decrypted in
 
-Welcome_msg DB  "WELCOME TO CIPHERS PROGRAM: '$'"                        ; welcome massage
+Welcome_msg DB  "WELCOME TO CIPHERS PROGRAM: '$'"                        ; welcome massage that shown for the user
+
 -------------------------------------------------------------------------------------------------------------------------------------------
+
 start:                                                                  ; start program
 
 LEA   DX,Welcome_msg                                                    ; address Welcome-msg with dx
