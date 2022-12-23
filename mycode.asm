@@ -408,9 +408,13 @@ INT    21h             						     ; interrupt 21h is called
 
 CALL start
 
-;------------------------------------------------procedures-----------------------------------------------------------
+;------------------------------------------------procedures we use it in the code -----------------------------------------------------------
+
+
 parse proc near                  				   ; Define parse procedure
-    
+ 
+;----------function to loob the string from the user----------
+
 nextchar:
 
 	cmp    [SI], '$'         				  ; end of string?
@@ -433,25 +437,35 @@ nextchar:
 		      						 ; BX -holds offset to base of table to use.	                                                    
 	mov    [DI], AL
 	inc    DI
-	
-skip:   inc    SI	
-	jmp    nextchar
-	
+;-----function for skip to the next word------
 
-end_of_string:  inc    SI
-                mov    [SI], '$'
+skip: 
+
+inc    SI	
+jmp    nextchar
+	
+;------function for put the $ in the end to the string that will be output------
+
+end_of_string: 
+
+inc    SI
+mov    [SI], '$'
     
 ret              					       ; To resume execution flow at the instruction following the call
+                                                               ; To reterun to the operating system
 
 parse endp                  
 
+;--------function to print thanks message on the output screen----------
+
 exit:       
-	;print new line
+        ;-------print new line-----
 
 	LEA    DX,n_line       				     ; save the effective address of n_line in DX register (offset of the string)
 	MOV    AH,09h          				     ; moving (09h) to the register ah to select sub-function 9 of the interrupt 21h DOS interrupts
 	INT    21h             				     ; interrupt 21h is called
 
+        ;-----print the thanks message----
 
 	LEA    DX,msg5         				    ; save the effective address of msg5 in DX register (offset of the string)
 	MOV    AH,09h          				    ; moving (09h) to the register ah to select sub-function 9 of the interrupt 21h DOS interrupts
