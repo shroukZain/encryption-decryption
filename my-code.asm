@@ -419,7 +419,7 @@ nextchar:
 	
 	               
 	xlatb          						 ; xlat algorithm: al = ds:[bx + unsigned al]   
-	              						 ; AL -holds index into table     
+	      ; AL -holds index into table     
 		      						 ; BX -holds offset to base of table to use.	                                                    
 	mov    [DI], AL
 	inc    DI
