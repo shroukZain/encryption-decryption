@@ -1,3 +1,4 @@
+ ;* This code contains two types of chipers :
  ;*                                           1- MonoNumeric 
  ;*                                           2-MonoAlphaptic             
 
