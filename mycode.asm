@@ -83,19 +83,26 @@ Welcome_msg DB  "WELCOME TO CIPHERS PROGRAM: '$'"                        ; welco
 
 start:                                                                  ; start program
 
+;-------for print welcome message on the output screen-------
+
 LEA   DX,Welcome_msg                                                    ; address Welcome-msg with dx
 MOV   AH,09h                                                            ; Selecting the sub-function that print string output 
 INT   21h                                                               ;intreupt function 
+
+;-------for print new line---------
 
 LEA  DX ,n_line                                                         ; address n_line with dx
 MOV  AH,09h                                                             ; Selecting the sub-function
 INT   21h  
 
-; print a choose encryption or decryption of a string at ds:dx
-LEA   DX,msg6                                                           ; address msg4 with dx
+;------print a choose encryption or decryption of a string -----
+
+LEA   DX,msg6                                                           ; address msg6 with dx
 MOV   AH,09h                                                            ; Selecting the sub-function
 INT   21h     
-;read the string
+
+
+;------Taking the input from user--------
 
 PUSH   CS                                                               ; push code segment from stack
 POP    DS                                                               ; pop data segment from stack
@@ -103,10 +110,14 @@ LEA    DI,cho                                                           ; addres
 MOV    DX,000FH                                                         ; exchange dx with 000FH
 CALL   GET_STRING                                                       ; call get string function
 
+;-------for new line-------
+
 LEA  DX ,n_line                                                         ; address n_line with dx
 MOV  AH,09h                                                             ; Selecting the sub-function
 INT   21h                                                               ; Function that outputs a string at DS:DX. String must be terminated by '$'
-       
+
+;--------Comparing the input with stored values to excute the function that user need----
+
 LEA    SI, cho                                                          ; address cho with si
 CMP    [SI], '1'                                                        ; compare between "1" and effictive address of si
 JE     encryption                                                   ; jump if [si]=1 to monoalphapetic  
