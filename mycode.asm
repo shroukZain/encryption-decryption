@@ -75,13 +75,17 @@ dec_str     DB  256 DUP('$')                                             ; decry
 
 Welcome_msg DB  "WELCOME TO CIPHERS PROGRAM: '$'"                        ; welcome massage that shown for the user
 
--------------------------------------------------------------------------------------------------------------------------------------------
+;-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+;-------the strart of our program---------
+
 
 start:                                                                  ; start program
 
 LEA   DX,Welcome_msg                                                    ; address Welcome-msg with dx
-MOV   AH,09h                                                            ; Selecting the sub-function
-INT   21h       
+MOV   AH,09h                                                            ; Selecting the sub-function that print string output 
+INT   21h                                                               ;intreupt function 
 
 LEA  DX ,n_line                                                         ; address n_line with dx
 MOV  AH,09h                                                             ; Selecting the sub-function
