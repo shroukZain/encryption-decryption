@@ -373,11 +373,6 @@ INT    21h             						     ; interrupt 21h is called
 CALL start
 
 ;------------------------------------------------procedures-----------------------------------------------------------
-;table1:    'qwertyuiopasdfghjklzxcvbnm'
-
-;table2:    'kbumcngphqrszyijadlewgbvft'  
-
-
 parse proc near                  				   ; Define parse procedure
     
 nextchar:
@@ -399,23 +394,17 @@ nextchar:
 	               
 	xlatb          						 ; xlat algorithm: al = ds:[bx + unsigned al]   
 	              						 ; AL -holds index into table     
-		      						 ; BX -holds offset to base of table to use.
-		                                                    
+		      						 ; BX -holds offset to base of table to use.	                                                    
 	mov    [DI], AL
 	inc    DI
 	
-
-skip:
-	inc    SI	
+skip:   inc    SI	
 	jmp    nextchar
 	
 
-end_of_string:
-
-   	inc    SI
-    mov    [SI], '$'
+end_of_string:  inc    SI
+                mov    [SI], '$'
     
-     
 ret              					       ; To resume execution flow at the instruction following the call
 
 parse endp                  
