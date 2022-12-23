@@ -5,6 +5,7 @@
 name "d-encryption"
 include 'emu8086.inc'
 org 100h 
+
 ;-----------------------------------------------------------------Saving Tables---------------------------------------------------
 ;-----------Storing letters from a to z (lower case)-------
 
@@ -32,7 +33,6 @@ INC AL                         ; Increases AL value by 1, therefore changing the
 LOOP store_numbers             ; Loops if CX after decrementing by 1 not equal 0
 
 JMP start                      ;to start the program
-
 
 ;--------------------------------------------------------------------------------------------------------------------------------------------
 ;--------Defination of some variables that we use in our code---------
@@ -76,8 +76,6 @@ dec_str     DB  256 DUP('$')                                             ; decry
 Welcome_msg DB  "WELCOME TO CIPHERS PROGRAM: '$'"                        ; welcome massage that shown for the user
 
 ;-------------------------------------------------------------------------------------------------------------------------------------------
-
-
 ;-------the strart of our program---------
 
 
