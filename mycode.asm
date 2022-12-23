@@ -57,7 +57,7 @@ n_line      DB  0DH,0AH,'$'                                              ; for n
 
 cho         DB  '$'                                                      ; for your choose
 
-;-str         DB  256 DUP('$')                                             ; buffer string
+str         DB  256 DUP('$')                                             ; buffer string
 
 
 enc_str     DB  256 DUP('$')                                             ; encrypted string
