@@ -20,7 +20,7 @@ in the mono-numeric substitution encryption, each alphabetic letter is substitut
 
 ![Capture](https://user-images.githubusercontent.com/119277820/209257236-02e0b3b1-038c-47e0-a33c-a013af1701f2.PNG)
 
-the second is :Mono-alphabetic
+the second is : Mono-alphabetic
 
 A mono-alphabetic cipher (aka simple substitution cipher) is a substitution cipher where each letter of the plain text is replaced with another letter of the alphabet. It uses a fixed key which consist of the 26 letters of a “shuffled alphabet”.
 
