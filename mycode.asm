@@ -102,7 +102,7 @@ INT   21h
 
 ;------Taking the input from user--------
 
-PUSH   CS                                                               ; push code segment from stack
+PUSH   CS                                                               ; push code segment into the stack
 POP    DS                                                               ; pop data segment from stack
 LEA    DI,cho                                                           ; address cho with di
 MOV    DX,000FH                                                         ; exchange dx with 000FH
@@ -126,67 +126,79 @@ JE     exit                                                             ; jump i
      
      
 ;-------------------------------------------------------------------------------------------encrypt-----------------------------------------------------------------------------     
-encryption:         
 
-; print a choose message-output of a string at ds:dx
+
+encryption:                                                             ;Function for engryption      
+
+;----------print a choose message-output of a string--------
+
 LEA   DX,msg4                                                           ; address msg4 with dx
 MOV   AH,09h                                                            ; Selecting the sub-function
 INT   21h                                                               ; Function that outputs a string at DS:DX. String must be terminated by '$'
 
-;read the string
+;----------taking the input from user----------
 
-PUSH   CS                                                               ; push code segment from stack
+PUSH   CS                                                               ; push code segment into the stack
 POP    DS                                                               ; pop data segment from stack
 LEA    DI,cho                                                           ; address cho with di
 MOV    DX,000FH                                                         ; exchange dx with 000FH
-CALL   GET_STRING                                                       ; call get string function
+CALL   GET_STRING                                                       ; call get string function this function read the input from user
 
+;----------print new line---------
 
 LEA  DX ,n_line                                                         ; address n_line with dx
 MOV  AH,09h                                                             ; Selecting the sub-function
 INT   21h                                                               ; Function that outputs a string at DS:DX. String must be terminated by '$'
 
+;-------comparing the input of the user with the values pf the options-------
        
 LEA    SI, cho                                                          ; address cho with si
 CMP    [SI], '1'                                                        ; compare between "1" and effictive address of si
-JE     en_monoalphapetic                                                   ; jump if [si]=1 to monoalphapetic  
+JE     en_monoalphapetic                                                ; jump if [si]=1 to monoalphapetic  
 CMP    [SI], '2'                                                        ; compare between "2" and effictive address of si        
 JE     mononumeric                                                      ; jump if  [si]=2  to  mononumeric
 CMP    [SI], '3'                                                        ; compare between "3" and effictive address of si
 JE     exit                                                             ; jump if [si]=3 to exit
                
-;------------------------- Encrypting and decryption mononumeric ----------------------------             
+;---------------------------------------------------- Encrypting and decryption mononumeric ----------------------------------------------------             
 
-mononumeric:
+mononumeric:                                                           ;Function for encryption numeric input
+
+;-----------print enter a message to encrypt on the output screen---------
 
 LEA DX, encrypt_msg                                                    ; Displays "Enter a message to encrypt: " message
 MOV AH,9                                                               ; Selecting the sub-function
 INT 21h                                                                ; Function that outputs a string at DS:DX. String must be terminated by '$'
 
-; Takes input from user
+;------------Takes input from user-------
+
 LEA DX, buffer                                                         ; address buffer with dx
 mov AH,0Ah                                                             ; Sub-function that stores input of a string to DS:DX
 INT 21h                                                                ; Function that outputs a string at DS:DX. String must be terminated by '$'
 
-; Puts $ at the end to be able to print it later
+;------Puts $ at the end to be able to print it later-------
+
 MOV BX,0                                                               ;load the BX register with 0
 MOV BL, buffer[1]                                                      ;moving the content of buffer[1] into register BL
 MOV buffer[BX+ 2],'$'                                                  ; put '$' at the end of buffer to print it latter
 
-;------------------- Encrypting 
+;------------------------------------------the encryption code--------------------------
 
 
-; Displays "Encrypted message: " message
+;-----------Displays "Encrypted message: " message on the output screen--------
+
 LEA DX, encrypted_msg                                                  ; mov the effictive addres of the encrypted_msg to the register DX
 MOV AH,9                                                               ; Selecting the sub-function
 INT 21h                                                                ; interrupt 21h is called to output the string 
 
-; The encryption code
+;--------------------The encryption code
+
 MOV DI,3FFh                                                            ; moving (3FFh) to the register DI
 MOV BX,DI                                                              ; moving the content of register DI (33fh) into register bx
 LEA SI, buffer[2]                                                      ; load the effictinve address of buffer[2] into register SI
 
-NEXT_CHAR:
+NEXT_CHAR:                                                             ; Function to loop the string and encrypt character by character
+
 CMP [SI],'$'                                                           ; Check if reached end of message
 JE end_msg                                                             ; if [SI] <'$'  will jmb to label end_msg
 
