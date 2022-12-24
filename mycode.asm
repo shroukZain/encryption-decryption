@@ -200,7 +200,7 @@ LEA SI, buffer[2]                                                      ; load th
 NEXT_CHAR:                                                             ; Function to loop the string and encrypt character by character
 
 CMP [SI],'$'                                                           ; Check if reached end of message
-JE end_msg                                                             ; if [SI] <'$'  will jmb to label end_msg
+JE end_msg                                                             ; if [SI] ='$'  will jmb to label end_msg
 
 LODSB                                                                  ; Loads first char into AL, then moves SI to next char
 CMP AL,'a'                                                             ; compare content of AL minus 'a'
@@ -463,5 +463,6 @@ exit:
 DEFINE_GET_STRING     					    ; predefined macro in umu8086.inc to read a string input 
 
 end
+
 
 
